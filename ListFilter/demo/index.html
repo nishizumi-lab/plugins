@@ -20,10 +20,32 @@
 
 
 <body>
+    <div class="container-fluid">
+        <nav class="navbar bg-dark navbar-expand-lg bg-body-tertiary" data-bs-theme="dark">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="#">Apps
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="./index.html">List filter</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="./minify_list.html">Minify list</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </div>
     <div id="main">
-        <h2>ホワイトリスト処理 → ブラックリスト処理 → ブラックリストとの類似度確認</h2>
+
         <div class="form-group width-90">
-            <label for="text1">■入力データの貼付欄(※入力必須)</label><br>
+            <label for="text1">■入力データの貼付欄</label><br>
             <textarea id="inputArea" class="bg-light-dark width-90" rows="4">いぬ
 ねことうさぎ
 とり
@@ -34,22 +56,24 @@
         </div>
 
         <div class="form-group width-90 height-40">
-            <label for="text1">■ホワイトリストの貼付欄(※入力必須)</label><br>
+            <label for="text1">■ホワイトリストの貼付欄</label><br>
             <textarea id='whiteListArea' class="box1 bg-light-dark width-90 height-40" rows="4">ねこ
 さる</textarea>
         </div>
 
         <div class="form-group width-90">
-            <label for="text1">■ブラックリストの貼付欄(任意)</label><br>
+            <label for="text1">■ブラックリストの貼付欄</label><br>
             <textarea id='blacklistArea' class="box1 width-90 bg-light-dark" rows="4">とり
 たけ
                         </textarea>
         </div>
         <br>
         <input type="button" value="ホワイトリスト処理のみ実行" class="btn btn-primary" onclick="whiteListFilter();" />
-        <input type="button" value="ホワイト+ブラックリスト処理を実行" class="btn btn-primary" onclick="whiteListFilter();blackListFilter();" />
-        <input type="button" value="全ての処理を実行" class="btn btn-danger" onclick="whiteListFilter();blackListFilter();levenFilter();" />
-        <br>  
+        <input type="button" value="ホワイト+ブラックリスト処理を実行" class="btn btn-primary"
+            onclick="whiteListFilter();blackListFilter();" />
+        <input type="button" value="全ての処理を実行" class="btn btn-danger"
+            onclick="whiteListFilter();blackListFilter();levenFilter();" />
+        <br>
         <div id='statusArea' class="box2"></div>
         <div id='statusArea2' class="box2"></div>
         <div id='statusArea3' class="box2"></div><br>

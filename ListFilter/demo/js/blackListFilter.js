@@ -1,16 +1,16 @@
 function blackListFilter(){
     const startTime = Date.now();
 
-    var outputData = document.getElementById('outputArea').value;
-    var outputArray = outputData.split("\n").filter(Boolean);
+    let outputData = document.getElementById('outputArea').value;
+    let outputArray = outputData.split("\n").filter(Boolean);
 
-    var blackListData = document.getElementById('blacklistArea').value;
-    var blackListArray = blackListData.split("\n").filter(Boolean);
+    let blackListData = document.getElementById('blacklistArea').value;
+    let blackListArray = blackListData.split("\n").filter(Boolean);
     let blacklistedArray = [];
     let unblacklistedArray = [];
-    var blacklistedFlag = 0;
-    var statusArea2 = document.getElementById("statusArea2");
-    var j = 0;
+    let blacklistedFlag = 0;
+    let statusArea2 = document.getElementById("statusArea2");
+    let j = 0;
 
     for(const outputStr of outputArray){
         blacklistedFlag = 0;
@@ -22,31 +22,23 @@ function blackListFilter(){
             }
         }
         if(blacklistedFlag == 0){
-            //console.log(outputStr);
             unblacklistedArray.push(outputStr);
         }      
         j++;
     }
-    //console.log(unblacklistedArray);
 
-
-    var blacklistedArea = document.getElementById('blacklistedArea');
+    let blacklistedArea = document.getElementById('blacklistedArea');
     blacklistedArea.innerHTML = "";
 
-    var unblacklistedArea = document.getElementById('unblacklistedArea');
+    let unblacklistedArea = document.getElementById('unblacklistedArea');
     unblacklistedArea.innerHTML = "";
 
-    var i = 0;
-    var j = 0;
-
-    while(i < blacklistedArray.length){
-        blacklistedArea.innerHTML += blacklistedArray[i] + "\n";
-        i = i + 1;
+    for(const blacklistedStr of blacklistedArray){
+        blacklistedArea.innerHTML += blacklistedStr + "\n";
     }
 
-    while(j < unblacklistedArray.length){
-        unblacklistedArea.innerHTML += unblacklistedArray[j] + "\n";
-        j = j + 1;
+    for(const unblacklistedStr of unblacklistedArray){
+        unblacklistedArea.innerHTML += unblacklistedStr + "\n";
     }
 
     const endTime = Date.now();

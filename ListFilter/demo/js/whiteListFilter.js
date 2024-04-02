@@ -1,38 +1,34 @@
 function whiteListFilter(){
     const startTime = Date.now();
 
-    var inputData = document.getElementById('inputArea').value;
-    var whiteListData = document.getElementById('whiteListArea').value;
-    var inputArray = inputData.split("\n").filter(Boolean);;
-    var whiteListArray = whiteListData.split("\n").filter(Boolean);;
-    var statusArea = document.getElementById("statusArea");
+    let inputData = document.getElementById('inputArea').value;
+    let whiteListData = document.getElementById('whiteListArea').value;
+    let inputArray = inputData.split("\n").filter(Boolean);;
+    let whiteListArray = whiteListData.split("\n").filter(Boolean);;
+    let statusArea = document.getElementById("statusArea");
 
-    var whiteListLength = whiteListArray.length;
-
-    var j = 0;
+    let whiteListLength = whiteListArray.length;
+    let i = 0;
+    let j = 0;
 
     for(const whiteStr of whiteListArray){
-        var i = 0;
+        i = 0;
         statusArea.innerHTML = '1️⃣ホワイトリストで除外:' + String(j+1) + '/' + String(whiteListLength) + '件完了';
         for(const inputStr of inputArray){
             if(inputStr.indexOf(whiteStr) > -1){
                 inputArray[i] = "DELETE";
             }
-            i = i + 1;
+            i++;
         }
-        j = j + 1;        
+        j++;        
     }
 
-    //var outputArray = Array.from(new Set(inputArray));
-    var outputArray = inputArray;
-    var output = document.getElementById('outputArea');
+    let outputArray = inputArray;
+    let output = document.getElementById('outputArea');
     output.innerHTML = "";
 
-    var i = 0;
-    
-    while(i < inputArray.length){
-        output.innerHTML += outputArray[i] + "\n";
-        i = i + 1;
+    for(const outputStr of outputArray){
+        output.innerHTML += outputStr + "\n";
     }
 
     const endTime = Date.now();
