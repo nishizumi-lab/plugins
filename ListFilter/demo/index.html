@@ -64,8 +64,7 @@
         <div class="form-group width-90">
             <label for="text1">■ブラックリストの貼付欄</label><br>
             <textarea id='blacklistArea' class="box1 width-90 bg-light-dark" rows="4">とり
-たけ
-                        </textarea>
+たけ</textarea>
         </div>
         <br>
         <input type="button" value="ホワイトリスト処理のみ実行" class="btn btn-primary" onclick="whiteListFilter();" />
@@ -73,6 +72,11 @@
             onclick="whiteListFilter();blackListFilter();" />
         <input type="button" value="全ての処理を実行" class="btn btn-danger"
             onclick="whiteListFilter();blackListFilter();levenFilter();" />
+        <select id="level">
+            <option value="厳しい">厳しい</option>
+            <option value="普通">普通</option>
+            <option value="緩い">緩い</option>
+        </select>
         <br>
         <div id='statusArea' class="box2"></div>
         <div id='statusArea2' class="box2"></div>

@@ -21,32 +21,49 @@ levenshteinDistance = function(str1, str2) {
 function levenFilter(){
     const startTime = Date.now();
 
-    var unblacklistedData = document.getElementById('unblacklistedArea').value;
-    var unblacklistedArray = unblacklistedData.split("\n").filter(Boolean);
+    let unblacklistedData = document.getElementById('unblacklistedArea').value;
+    let unblacklistedArray = unblacklistedData.split("\n").filter(Boolean);
 
-    var blackListData = document.getElementById('blacklistArea').value;
-    var blackListArray = blackListData.split("\n").filter(Boolean);
-    var statusArea3 = document.getElementById("statusArea3");
+    let blackListData = document.getElementById('blacklistArea').value;
+    let blackListArray = blackListData.split("\n").filter(Boolean);
+    let statusArea3 = document.getElementById("statusArea3");
 
     let dangerArray = [];
     let safetyArray = [];
-    var dangerFlag = 0;
+    let dangerFlag = 0;
 
-    var j = 0;
+    let j = 0;
+    let threshold = 0;
+    let score = 0;
+    let level = document.getElementById('level').value;
+
+    if(level == '厳しい'){
+        threshold = 10;
+    }
+    else if(level == '普通'){
+        threshold = 5;
+    }
+    else if(level == '緩い'){
+        threshold = 2;
+    }
 
     for(const unblacklistedStr of unblacklistedArray){
         dangerFlag = 0;
         statusArea3.innerHTML = '3️⃣ブラックリストとの類似度計算:' + String(j+1) + '/' + String(unblacklistedArray.length) + '件完了';
         for(const blackStr of blackListArray){
-            var score = levenshteinDistance(blackStr, unblacklistedStr);
-            if(score <= 4){
-                dangerFlag = 0;
-            }
-            else{
-                dangerFlag = 1;                
+            score = levenshteinDistance(blackStr, unblacklistedStr);
+            console.log("---------");
+            console.log(blackStr);
+            console.log(unblacklistedStr);            
+            console.log(score);
+            console.log(threshold);
+            if(score <= threshold){
+                dangerFlag = 1;
             }
         }
-        if(dangerFlag == 0){
+        console.log("---");
+        console.log(dangerFlag);
+        if(dangerFlag == 1){
             dangerArray.push(unblacklistedStr);
         }
         else{
@@ -54,26 +71,18 @@ function levenFilter(){
         }      
         j++;
     }
-    //console.log(unblacklistedArray);
-
-
-    var safetyArea = document.getElementById('safetyArea');
+    let safetyArea = document.getElementById('safetyArea');
     safetyArea.innerHTML = "";
 
-    var dangerArea = document.getElementById('dangerArea');
+    let dangerArea = document.getElementById('dangerArea');
     dangerArea.innerHTML = "";
 
-    var i = 0;
-    var j = 0;
-
-    while(i < safetyArray.length){
-        safetyArea.innerHTML += safetyArray[i] + "\n";
-        i = i + 1;
+    for(const safetyStr of safetyArray){
+        safetyArea.innerHTML += safetyStr + "\n";
     }
 
-    while(j < dangerArray.length){
-        dangerArea.innerHTML += dangerArray[j] + "\n";
-        j = j + 1;
+    for(const dangerStr of dangerArray){
+        dangerArea.innerHTML += dangerStr + "\n";
     }
 
     const endTime = Date.now();
