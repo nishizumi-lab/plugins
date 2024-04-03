@@ -6,7 +6,7 @@ function whiteListFilter(){
     let inputArray = inputData.split("\n").filter(Boolean);;
     let whiteListArray = whiteListData.split("\n").filter(Boolean);;
     let statusArea = document.getElementById("statusArea");
-
+    let deletedArray = [];
     let whiteListLength = whiteListArray.length;
     let i = 0;
     let j = 0;
@@ -17,18 +17,34 @@ function whiteListFilter(){
         for(const inputStr of inputArray){
             if(inputStr.indexOf(whiteStr) > -1){
                 inputArray[i] = "DELETE";
+                deletedArray.push(inputStr);
             }
             i++;
         }
         j++;        
     }
 
-    let outputArray = inputArray;
-    let output = document.getElementById('outputArea');
-    output.innerHTML = "";
+    let outputOption = document.getElementById('outputOption').value;
+    let outputArray = [];
+
+    if(outputOption == 'DELETE行は残す'){
+        outputArray = inputArray;
+    }
+    else{
+        outputArray = inputArray.filter(n => n !== "DELETE");
+    }
+
+    let outputArea = document.getElementById('outputArea');
+    let deletedArea = document.getElementById('deletedArea');
+    outputArea.innerHTML = "";
+    deletedArea.innerHTML = "";
 
     for(const outputStr of outputArray){
-        output.innerHTML += outputStr + "\n";
+        outputArea.innerHTML += outputStr + "\n";
+    }
+
+    for(const deletedStr of deletedArray){
+        deletedArea.innerHTML += deletedStr + "\n";
     }
 
     const endTime = Date.now();

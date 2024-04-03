@@ -53,6 +53,11 @@ body, #main{
     color:#eee;
 }
 
+.bg-dark-orange{
+    background-color: #663300;
+    color:#eee;
+}
+
 .bg-dark-green{
     background-color: #0d3c04;
     color:#eee;
